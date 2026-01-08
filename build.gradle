@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     implementation 'org.hibernate.orm:hibernate-core:6.1.7.Final'
-    runtimeOnly 'com.h2database:h2:2.1.224'
+    implementation 'com.h2database:h2:2.2.220'
 
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
