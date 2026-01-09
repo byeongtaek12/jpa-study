@@ -6,6 +6,8 @@
              version="3.0">
     <!-- JPA 설정 묶음 정의 -->
     <persistence-unit name="customer-exam">
+        <!-- 엔티티 클래스 명시적 선언 -->
+        <class>com.example.jpastudy.entity.Customer</class>
         <properties>
             <!-- H2 DB DataSource 직접 정의 -->
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
