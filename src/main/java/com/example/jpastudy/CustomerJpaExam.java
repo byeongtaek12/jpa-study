@@ -15,10 +15,23 @@ public class CustomerJpaExam {
 
 		tx.begin();
 
-		em.persist(Customer.sample());
+		try {
 
-		tx.commit();
-		em.close();
+			// em.persist(Customer.sample());
+			Customer foundCustomer = em.find(Customer.class, "ID0001");
+
+			Customer foundCustomer1 = em.find(Customer.class, "ID0001");
+			// foundCustomer.setName("Park");
+			// em.remove(foundCustomer);
+			System.out.println(foundCustomer.toString());
+			System.out.println(foundCustomer1.toString());
+			System.out.println(foundCustomer == foundCustomer1);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			em.close();
+		}
 		emf.close();
 	}
 }
