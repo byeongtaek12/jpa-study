@@ -17,13 +17,7 @@ public class CustomerJpaExam {
 
 		try {
 
-			Customer customer = new Customer("ID0005", "Jin"); // 비영속 상태(new)
-			em.persist(customer); // Customer 객체 영속 상태(Managed)
-
-			em.detach(customer); // Customer 객체 준영속 상태(Detached)
-
-			Customer foundCustomer = em.find(Customer.class, "ID0005");
-			System.out.println(foundCustomer);
+			em.persist(Customer.sample());
 
 			tx.commit();
 		} catch (Exception e) {
