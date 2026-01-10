@@ -17,7 +17,12 @@ public class CustomerJpaExam {
 
 		try {
 
-			em.persist(Customer.sample());
+			Customer customer = new Customer();
+			customer.setName("Oh");
+			customer.setRegisterDate(System.currentTimeMillis());
+			em.persist(customer);
+
+			System.out.println("==================Before Commit================");
 
 			tx.commit();
 		} catch (Exception e) {
