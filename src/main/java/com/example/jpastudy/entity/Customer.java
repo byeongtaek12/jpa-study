@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,10 +15,11 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
+@SequenceGenerator(name="customer_generate", sequenceName = "customer_seq", initialValue = 1, allocationSize = 50)
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_generate")
 	private Long id;
 	private String name;
 	private long registerDate;
