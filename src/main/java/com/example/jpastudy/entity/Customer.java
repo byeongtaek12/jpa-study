@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,11 +16,17 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
-@SequenceGenerator(name="customer_generate", sequenceName = "customer_seq", initialValue = 1, allocationSize = 50)
+@TableGenerator(name="id_generator",
+				table="customer_id",
+				pkColumnName = "id_name",
+				pkColumnValue ="customer_id",
+				valueColumnName = "next_value",
+				initialValue = 0,
+				allocationSize = 1)
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_generate")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
 	private Long id;
 	private String name;
 	private long registerDate;
