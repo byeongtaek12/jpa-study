@@ -22,17 +22,18 @@ public class CustomerJpaExam {
 			em.persist(major);
 
 			Student student = new Student("Kim", "3");
-			student.setMajorId(major.getMajorId());
+			student.setMajor(major);
 			em.persist(student);
 
 			em.flush();
 			em.clear();
 
 			Student foundStudent = em.find(Student.class, 1);
-			System.out.println(foundStudent);
+			System.out.println(foundStudent.getMajor().getName());
+			// System.out.println(foundStudent);
 
-			Major foundMajor = em.find(Major.class, foundStudent.getMajorId());
-			System.out.println(foundMajor);
+			// Major foundMajor = em.find(Major.class, foundStudent.getMajorId());
+			// System.out.println(foundMajor);
 
 
 
