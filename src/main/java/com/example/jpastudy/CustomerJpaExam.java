@@ -1,6 +1,7 @@
 package com.example.jpastudy;
 
-import com.example.jpastudy.entity.Customer;
+import com.example.jpastudy.entity.Major;
+import com.example.jpastudy.entity.Student;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -16,15 +17,28 @@ public class CustomerJpaExam {
 		tx.begin();
 
 		try {
-			Customer customer = new Customer();
-			customer.setName("Oh");
-			customer.setRegisterDate(System.currentTimeMillis());
-			em.persist(customer);
 
-			System.out.println("==================Before Commit================");
+			Major major = new Major("Computer Science", "College of Engineering");
+			em.persist(major);
+
+			Student student = new Student("Kim", "3");
+			student.setMajorId(major.getMajorId());
+			em.persist(student);
+
+			em.flush();
+			em.clear();
+
+			Student foundStudent = em.find(Student.class, 1);
+			System.out.println(foundStudent);
+
+			Major foundMajor = em.find(Major.class, foundStudent.getMajorId());
+			System.out.println(foundMajor);
+
+
 
 			tx.commit();
 		} catch (Exception e) {
+			e.getStackTrace();
 			tx.rollback();
 		} finally {
 			em.close();
