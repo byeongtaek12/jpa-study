@@ -27,10 +27,6 @@ public class Student {
 
 	private String grade;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MAJORID")
-	private Major major;
-
 	public Student(String name, String grade) {
 		this.name = name;
 		this.grade = grade;

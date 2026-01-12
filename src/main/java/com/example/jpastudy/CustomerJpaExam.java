@@ -18,25 +18,12 @@ public class CustomerJpaExam {
 
 		try {
 
-			Major major = new Major("Computer Science", "College of Engineering");
-			em.persist(major);
-
-			Student student = new Student("Kim", "3");
-			student.setMajor(major);
+			Student student = new Student("Oh","3");
 			em.persist(student);
 
-			em.flush();
-			em.clear();
-
-			Student foundStudent = em.find(Student.class, 1);
-			System.out.println(foundStudent.getMajor().getName());
-			// System.out.println(foundStudent);
-
-			// Major foundMajor = em.find(Major.class, foundStudent.getMajorId());
-			// System.out.println(foundMajor);
-
-
-
+			Major major = new Major("Computer Science", "College of Engineering");
+			major.getStudents().add(student);
+			em.persist(major);
 
 			tx.commit();
 		} catch (Exception e) {
