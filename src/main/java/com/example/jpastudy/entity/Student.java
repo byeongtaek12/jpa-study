@@ -27,6 +27,10 @@ public class Student {
 
 	private String grade;
 
+	@ManyToOne
+	@JoinColumn(name = "major_id", insertable = false, updatable = false)
+	private Major major;
+
 	public Student(String name, String grade) {
 		this.name = name;
 		this.grade = grade;
